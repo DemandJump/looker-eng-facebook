@@ -172,13 +172,15 @@ view: performance_fact {
 
   measure: conversion_count {
     type: sum
-    label: "Conversions"
+    label: "Conv"
+    description: "Conversions"
     sql: ${TABLE}."CONVERSIONS" ;;
   }
 
   measure: conversion_rate {
     type: number
-    label: "Conversion Rate"
+    label: "Conv Rate"
+    description: "Conversion Rate - Conversion Count/Click Count"
     sql: ${conversion_count}/ nullif(${click_count},0) ;;
     value_format_name: percent_2
      }
@@ -192,14 +194,16 @@ view: performance_fact {
 
   measure: cpms {
     type: average
-    label: "Cost Per Million"
+    label: "CPM"
+    description: "Cost per Thousand"
     sql: ${TABLE}."CPM" ;;
     value_format_name: usd
   }
 
   measure: ctrs {
     type: average
-    label: "Click Thru Rate"
+    label: "CTR"
+    description: "Click Thru Rate"
     sql: ${TABLE}."CTR" ;;
     value_format: "0.00\%"
   }
@@ -231,14 +235,15 @@ view: performance_fact {
 
   measure: cpcs {
     type: average
-    label: "Cost Per Click"
+    label: "CPC"
+    description: "Cost per Click"
     sql: ${TABLE}."CPC" ;;
     value_format_name: usd
   }
 
   measure: conversionvalue_sum {
     type: sum
-    label: "Conversion Value"
+    label: "Conv Value"
     description: "Converted Revenue from Ads"
     sql: ${TABLE}."CONVERSIONVALUE" ;;
     value_format_name: usd
@@ -249,7 +254,7 @@ view: performance_fact {
   description: "Return on Ad Spend per Dollar Spent"
     type: number
     sql: ${conversionvalue_sum} / nullif(${cost},0) ;;
-    value_format_name: usd
+    value_format_name: decimal_2
   }
 
   set: detail {
