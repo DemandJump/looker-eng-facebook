@@ -175,6 +175,7 @@ view: performance_fact {
     label: "Conv"
     description: "Conversions"
     sql: ${TABLE}."CONVERSIONS" ;;
+    value_format_name: decimal_0
   }
 
   measure: conversion_rate {
